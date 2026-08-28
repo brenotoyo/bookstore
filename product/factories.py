@@ -3,10 +3,6 @@ import factory
 from product.models import Product
 from product.models import Category
 
-# Utilizamos o factory para gerar dados falsos, com propósito de testar
-# a aplicação. Após gerar os dados falsos que preenchem os campos dos
-# models, pode-se testar a migração para o banco de dados.
-
 class CategoryFactory(factory.django.DjangoModelFactory):
     title = factory.Faker('pystr')
     slug = factory.Faker('pystr')
@@ -17,7 +13,7 @@ class CategoryFactory(factory.django.DjangoModelFactory):
         model = Category
 
 class ProductFactory(factory.django.DjangoModelFactory):
-    price = factory.Faker('pystr')
+    price = factory.Faker("pydecimal", left_digits=5, right_digits=2, positive=True)
     category = factory.LazyAttribute(CategoryFactory)
     title = factory.Faker('pystr')
 
@@ -28,7 +24,7 @@ class ProductFactory(factory.django.DjangoModelFactory):
 
         if extracted:
             for category in extracted:
-                self.category.add(category)
+                self.categories.add(category)
 
     class Meta:
         model = Product
