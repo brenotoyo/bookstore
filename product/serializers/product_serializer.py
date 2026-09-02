@@ -3,21 +3,23 @@ from rest_framework import serializers
 from product.models import Product, Category
 from product.serializers.category_serialiazer import CategorySerializer
 
+
 class ProductSerializer(serializers.ModelSerializer):
     categories = CategorySerializer(read_only=True, many=True)
-    categories_id = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all(), write_only=True, many=True)
-
+    categories_id = serializers.PrimaryKeyRelatedField(
+        queryset=Category.objects.all(), write_only=True, many=True
+    )
 
     class Meta:
         model = Product
         fields = [
-            'id',
-            'title',
-            'description',
-            'price',
-            'active',
-            'categories',
-            'categories_id',
+            "id",
+            "title",
+            "description",
+            "price",
+            "active",
+            "categories",
+            "categories_id",
         ]
 
     def create(self, validated_data):
