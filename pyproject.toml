@@ -5,7 +5,7 @@ description = ""
 authors = [
     {name = "Breno Kazuo",email = "breno_toyo@hotmail.com"}
 ]
-requires-python = ">=3.9, <4.0"
+requires-python = ">=3.12, <4.0"
 dependencies = [
     "pytest (>=9.1.1,<10.0.0)",
     "factory-boy (>=3.3.3,<4.0.0)",
